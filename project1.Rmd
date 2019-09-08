@@ -1,0 +1,36 @@
+---
+title: "Developin R Products Project 1"
+author: "Anushri Tambe"
+date: "08/09/2019"
+output: html_document
+---
+
+## Introduction
+
+This is a project in Developing R Product.In this we have to Create a web page using R Markdown that features a map created with Leaflet.Also webpage must contain the date when the documentis created and it must contain a map created with Leaflet.
+
+## Tourist Places in Maharashtra
+
+```{r,echo=TRUE}
+library(leaflet)
+maharashtra_places <- data.frame(places= c("Gateway Of India Mumbai","Elephant    Caves","Ajantha Caves","Lonar Sarovar","Raigad","Pandharpur","Mahabaleshwar"),
+                    lat=c(18.92,18.96,20.53,19.97,18.51,17.68,17.93),
+                     lng=c(72.83,72.93,75.75,76.5,73.18,75.31,73.64))
+maharashtra_places %>% 
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(popup=maharashtra_places$places)
+```
+
+## Cluster Separation
+
+Zoom in the map for cluster separation
+```{r,echo=TRUE}
+mydata <- data.frame(lat = runif(500, min = 15, max =20 ),
+                 lng <- runif(500, min = 70, max = 80))
+my_map <- leaflet() %>%
+  addTiles() %>%
+  addCircleMarkers(mydata, lat = mydata$lat, lng = mydata$lng, clusterOptions = markerClusterOptions())
+
+my_map
+```
